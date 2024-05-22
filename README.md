@@ -16,7 +16,7 @@ docker build Docker -t ros-bridge-container
 > `docker pull tge1375/quest2ros2:0.0.1`
 
 * Run Container
-```
+```bash
 docker run --name quest2ros --rm -it --net host tge1375/quest2ros2:0.0.1
 # Or, If you have built container
 docker run --name quest2ros --rm -it --net host ros-bridge-container
@@ -25,7 +25,7 @@ docker run --name quest2ros --rm -it --net host ros-bridge-container
 
 * Usage Example - cmd_vel pub/sub
 
-```
+```bash
 # Terminal 1 - Docker ROS 1 core
 source /opt/ros/noetic/setup.bash
 roscore
@@ -52,7 +52,7 @@ ros2 topic echo /cmd_vel
 
 * Usage Example - Quest2ROS 
 
-```
+```bash
 # Terminal 1 - Build Pkgs && Docker ROS 1 core
 source /opt/ros/noetic/setup.bash
 cd /home/user/quest2ros_ws/src/ROS-TCP-Endpoint/src/ros_tcp_endpoint
