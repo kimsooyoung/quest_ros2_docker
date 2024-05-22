@@ -52,8 +52,36 @@ ros2 topic echo /cmd_vel
 
 * Usage Example - Quest2ROS 
 
-* check your ip config and then execute `ros_tcp_endpoint`
-
 ```
-roslaunch ros_tcp_endpoint endpoint.launch tcp_ip:=192.168.0.10 tcp_port:=10000
+# Terminal 1 - Build Pkgs && Docker ROS 1 core
+source /opt/ros/noetic/setup.bash
+cd /home/user/quest2ros_ws/src/ROS-TCP-Endpoint/src/ros_tcp_endpoint
+vi default_server_endpoint.py
+# edit => #!/usr/bin/env python3
+cd /home/user/quest2ros_ws/
+catkin build
+source devel/setup.bash
+
+roscore
+
+# Terminal 2 - Docker ROS 1 ros_tcp_endpoint
+source /opt/ros/noetic/setup.bash
+source devel/setup.bash
+# check your ip config through "ifconfig"
+roslaunch ros_tcp_endpoint endpoint.launch tcp_ip:=<your-ip-port> tcp_port:=10000
+
+# Terminal 3 - Docker ROS 1 quest2ros
+source /opt/ros/noetic/setup.bash
+source devel/setup.bash
+rosrun quest2ros ros2quest.py
+
+# Terminal 4 - Docker ROS 2 bridge
+source /opt/ros/noetic/setup.bash
+source /opt/ros/foxy/setup.bash 
+ROS_DOMAIN_ID=30 ros2 run ros1_bridge dynamic_bridge --bridge-all-topics
+
+# Terminal 5 - "LOCAL" ROS 2 sub check
+$ ros2 topic echo
+/q2r_twist
+/dice_twist
 ```
