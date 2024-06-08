@@ -41,7 +41,6 @@ RUN apt install -y ros-foxy-desktop
 RUN apt install -y python3-pip
 RUN apt install -y ros-foxy-ros1-bridge
 
-
 RUN pip install flask flask-ask-sdk ask-sdk
 RUN /bin/bash -c "source /opt/ros/noetic/setup.bash"
 
@@ -53,7 +52,7 @@ RUN /bin/bash -c "source /opt/ros/noetic/setup.bash"
 RUN mkdir -p /home/${USER}/quest2ros_ws/src
 WORKDIR /home/${USER}/quest2ros_ws/src
 RUN git clone https://github.com/Unity-Technologies/ROS-TCP-Endpoint.git \
-    && git clone https://github.com/Quest2ROS/quest2ros.git
+    && git clone https://github.com/Road-Balance/quest2ros.git
 
 WORKDIR /home/${USER}/quest2ros_ws
 RUN cd /home/${USER}/quest2ros_ws && catkin init 
